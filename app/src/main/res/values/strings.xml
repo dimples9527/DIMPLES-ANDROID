@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">DIMPLES-ANDROID</string>
+    <!--APP Name-->
+    <string name="app_name">DIMPLES</string>
+
+    <!--action-->
+    <string name="action_skip">跳过</string>
 </resources>
