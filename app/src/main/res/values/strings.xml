@@ -1,6 +1,11 @@
 <resources>
     <!--APP Name-->
     <string name="app_name">DIMPLES</string>
+    
+    <!--Home-->
+    <string name="news">新闻</string>
+    <string name="collect">收藏</string>
+    <string name="person">个人</string>
 
     <!--action-->
     <string name="action_skip">跳过</string>

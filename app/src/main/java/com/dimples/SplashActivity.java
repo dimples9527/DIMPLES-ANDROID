@@ -17,6 +17,10 @@ import com.dimples.widget.FullScreenVideoView;
 
 import java.io.File;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 /**
  * 启动页
  *
@@ -26,18 +30,18 @@ import java.io.File;
 public class SplashActivity extends AppCompatActivity {
 
     private static final String D_TAG = "D-SplashActivity";
+    @BindView(R.id.vv_play_splash)
+    FullScreenVideoView vvPlaySplash;
+    @BindView(R.id.tv_hint_splash)
+    TextView tvHintSplash;
 
-    private FullScreenVideoView mVvPlay;
-    private TextView mTvHint;
     private CustomCountDownTimer countDownTimer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-        mVvPlay = findViewById(R.id.vv_play_splash);
-        mTvHint = findViewById(R.id.tv_hint_splash);
+        ButterKnife.bind(this);
 
         //申请权限
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -45,48 +49,44 @@ public class SplashActivity extends AppCompatActivity {
         } else {
             initPlay();
         }
-        clickSkip();
     }
 
     /**
      * 设置视频播放
      */
     public void initPlay() {
-        mVvPlay.setVideoURI(Uri.parse("android.resource://" + getPackageName() + File.separator + R.raw.splash));
+        vvPlaySplash.setVideoURI(Uri.parse("android.resource://" + getPackageName() + File.separator + R.raw.splash));
         //开始播放视频回调方法  start()——播放视频
-        mVvPlay.setOnPreparedListener(MediaPlayer::start);
+        vvPlaySplash.setOnPreparedListener(MediaPlayer::start);
         //视频播放完成回调方法
-        mVvPlay.setOnCompletionListener(MediaPlayer::start);
+        vvPlaySplash.setOnCompletionListener(MediaPlayer::start);
         //开启倒计时
         countDownTimer = new CustomCountDownTimer(3, new CustomCountDownTimer.ICountDownHandler() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onTicker(int time) {
-                mTvHint.setText(time + "秒");
+                tvHintSplash.setText("跳过(" + time + ")");
             }
 
             @Override
             public void onFinish() {
-                mTvHint.setText(R.string.action_skip);
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                finish();
             }
         });
         countDownTimer.start();
-    }
-
-    /**
-     * 跳转点击
-     */
-    public void clickSkip() {
-        mTvHint.setOnClickListener(v -> {
-            startActivity(new Intent(SplashActivity.this,MainActivity.class));
-            finish();
-        });
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         countDownTimer.cancel();
+    }
+
+    @OnClick(R.id.tv_hint_splash)
+    public void onClick() {
+        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+        finish();
     }
 }
 
