@@ -7,7 +7,12 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+/.smartfox_info.xml
+/.vcs.xml
 .DS_Store
 /build
 /captures
 .externalNativeBuild
+.idea/smartfox_info.xml
+.idea/vcs.xml
+app/libs/
