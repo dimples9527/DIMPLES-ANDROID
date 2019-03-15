@@ -1,14 +1,18 @@
 package com.dimples;
 
+import android.content.Context;
+
 import com.dimples.mvp.base.BaseMvpPresenter;
 import com.dimples.widget.CustomCountDownTimer;
 
 public class SplashTimerPresenter extends BaseMvpPresenter<ISplashActivityContract.IView> implements ISplashActivityContract.IPresenter {
 
     private static CustomCountDownTimer timer;
+    private Context context;
 
     public SplashTimerPresenter(ISplashActivityContract.IView view) {
         super(view);
+        context = (Context) view;
     }
 
     public void initTimer() {
@@ -20,7 +24,7 @@ public class SplashTimerPresenter extends BaseMvpPresenter<ISplashActivityContra
 
             @Override
             public void onFinish() {
-                getView().setTvTimer("跳过");
+                getView().pageSwitch(context, MainActivity.class);
             }
         });
         timer.start();

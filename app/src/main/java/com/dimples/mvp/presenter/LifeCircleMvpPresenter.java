@@ -47,7 +47,7 @@ public abstract class LifeCircleMvpPresenter<T extends IMvpView> implements ILif
 
     /**
      * 界面销毁时调用的方法
-     * 销毁弱引用
+     * 销毁弱引用——（不是从其他类继承过来的）
      */
     @Override
     public void onDestroy() {

@@ -1,6 +1,7 @@
 package com.dimples;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
@@ -52,6 +53,11 @@ public class SplashActivity extends BaseActivity implements ISplashActivityContr
     @Override
     public void setTvTimer(String s) {
         tvHintSplash.setText(s);
+    }
+
+    @Override
+    public void pageSwitch(Context context, Class<?> cls) {
+        startActivity(new Intent(context,cls));
     }
 
     @OnClick(R.id.tv_hint_splash)
