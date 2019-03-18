@@ -4,11 +4,11 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
-import com.dimples.R;
 import com.dimples.mvp.base.BaseMvpPresenter;
-import com.dimples.ui.discover.DiscoverFragment;
-import com.dimples.ui.book.BookFragment;
-import com.dimples.ui.mine.MineFragment;
+import com.dimples.ui.main.book.BookFragment;
+import com.dimples.ui.main.discover.DiscoverFragment;
+import com.dimples.ui.main.mine.MineFragment;
+import com.dimples.ui.main.tools.MainConstantTool;
 
 public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContract.IView> implements IMainActivityContract.IPresenter {
 
@@ -18,7 +18,7 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
      * 当前Fragment角标
      */
     private int currentFragmentIndex;
-    private int currentCheckedId;
+//    private int currentCheckedId;
 
     public MainActivityPresenter(IMainActivityContract.IView view) {
         super(view);
@@ -36,7 +36,7 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
     @Override
     public void initMainFragment() {
         //当前Fragment下标
-        this.currentFragmentIndex = 0;
+        this.currentFragmentIndex = MainConstantTool.BOOK;
         replaceFragment(currentFragmentIndex);
     }
 
@@ -45,7 +45,8 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
      *
      * @param currentFragmentIndex int
      */
-    private void replaceFragment(int currentFragmentIndex) {
+    @Override
+    public void replaceFragment(int currentFragmentIndex) {
         Log.i(D_TAG, "MainActivityPresenter-----------------replaceFragment----currentFragmentIndex:" + currentFragmentIndex);
         for (int i = 0; i < fragments.length; i++) {
             if (currentFragmentIndex != i) {
@@ -72,20 +73,20 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
     private void saveCurrentFragment(int currentFragmentIndex) {
         Log.i(D_TAG, "MainActivityPresenter-----------------saveCurrentFragment----currentFragmentIndex:" + currentFragmentIndex);
         this.currentFragmentIndex = currentFragmentIndex;
-        switch (currentFragmentIndex) {
-            case 0:
-                currentCheckedId = R.id.item_book;
-                break;
-            case 1:
-                currentCheckedId = R.id.item_discover;
-                break;
-            case 2:
-                currentCheckedId = R.id.item_mine;
-                break;
-            default:
-                currentCheckedId = R.id.item_book;
-                break;
-        }
+//        switch (currentFragmentIndex) {
+//            case MainConstantTool.BOOK:
+//                currentCheckedId = R.id.item_book;
+//                break;
+//            case MainConstantTool.DISCOVER:
+//                currentCheckedId = R.id.item_discover;
+//                break;
+//            case MainConstantTool.MINE:
+//                currentCheckedId = R.id.item_mine;
+//                break;
+//            default:
+//                currentCheckedId = R.id.item_book;
+//                break;
+//        }
     }
 
     /**
@@ -97,13 +98,13 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
         Log.i(D_TAG, "MainActivityPresenter-----------------newCurrentFragment----currentFragmentIndex:" + currentFragmentIndex);
         Fragment fragment = null;
         switch (currentFragmentIndex) {
-            case 0:
+            case MainConstantTool.BOOK:
                 fragment = new BookFragment();
                 break;
-            case 1:
+            case MainConstantTool.DISCOVER:
                 fragment = new DiscoverFragment();
                 break;
-            case 2:
+            case MainConstantTool.MINE:
                 fragment = new MineFragment();
                 break;
             default:

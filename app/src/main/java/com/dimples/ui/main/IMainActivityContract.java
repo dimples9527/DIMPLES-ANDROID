@@ -26,6 +26,8 @@ public interface IMainActivityContract  {
     interface IPresenter extends ILifeCircle {
 
         void initMainFragment();
+
+        void replaceFragment(int currentFragmentIndex);
     }
 
     IView emptyView = new IView() {
