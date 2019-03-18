@@ -1,14 +1,14 @@
-package com.dimples;
+package com.dimples.ui.splash;
 
 import android.content.Context;
 
+import com.dimples.ui.main.MainActivity;
 import com.dimples.mvp.base.BaseMvpPresenter;
 import com.dimples.widget.CustomCountDownTimer;
 
 public class SplashTimerPresenter extends BaseMvpPresenter<ISplashActivityContract.IView> implements ISplashActivityContract.IPresenter {
 
     private static CustomCountDownTimer timer;
-    private Context context;
 
     public SplashTimerPresenter(ISplashActivityContract.IView view) {
         super(view);

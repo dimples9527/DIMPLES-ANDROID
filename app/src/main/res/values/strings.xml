@@ -3,9 +3,9 @@
     <string name="app_name">DIMPLES</string>
     
     <!--Home-->
-    <string name="news">新闻</string>
-    <string name="collect">收藏</string>
-    <string name="person">个人</string>
+    <string name="book">书架</string>
+    <string name="discover">发现</string>
+    <string name="mine">我的</string>
 
     <!--action-->
     <string name="action_skip">跳过</string>

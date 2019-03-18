@@ -1,4 +1,4 @@
-package com.dimples;
+package com.dimples.ui.splash;
 
 import android.Manifest;
 import android.content.Context;
@@ -6,11 +6,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.widget.TextView;
 
+import com.dimples.ui.main.MainActivity;
+import com.dimples.R;
 import com.dimples.base.BaseActivity;
 import com.dimples.component.ViewInject;
 import com.dimples.widget.FullScreenVideoView;
@@ -37,9 +37,7 @@ public class SplashActivity extends BaseActivity implements ISplashActivityContr
     TextView tvHintSplash;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    public void afterBindView() {
         //申请权限
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0);

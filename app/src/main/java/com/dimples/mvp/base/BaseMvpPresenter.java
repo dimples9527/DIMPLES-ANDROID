@@ -1,5 +1,6 @@
 package com.dimples.mvp.base;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -13,6 +14,8 @@ import com.dimples.mvp.presenter.LifeCircleMvpPresenter;
  * @date 2019/3/13 22:35
  */
 public abstract class BaseMvpPresenter<T extends IMvpView> extends LifeCircleMvpPresenter<T> {
+
+    protected Context context;
 
     public BaseMvpPresenter(T view) {
         super(view);

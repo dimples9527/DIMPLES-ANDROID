@@ -15,10 +15,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <!--Main Activity-->
-        <activity android:name=".MainActivity" />
+        <activity android:name=".ui.main.MainActivity" />
 
         <!--Splash Activity-->
-        <activity android:name=".SplashActivity"
+        <activity android:name=".ui.splash.SplashActivity"
             android:theme="@style/ThemeFullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
