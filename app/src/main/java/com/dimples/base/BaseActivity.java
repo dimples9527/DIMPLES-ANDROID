@@ -1,6 +1,7 @@
 package com.dimples.base;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -11,6 +12,8 @@ import butterknife.ButterKnife;
 
 @SuppressLint("Registered")
 public abstract class BaseActivity extends LifeCircleMvpActivity {
+
+    public Context context;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

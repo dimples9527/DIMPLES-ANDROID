@@ -20,7 +20,7 @@ public abstract class BaseFragment extends LifeCircleMvpFragment {
 
 
     private static final String D_TAG = "D-BaseFragment";
-    private Context context;
+    public Context context;
 
     @Override
     public void onAttach(Context context) {
