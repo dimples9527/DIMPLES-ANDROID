@@ -12,6 +12,7 @@ import com.dimples.R;
 import com.dimples.base.BaseFragment;
 import com.dimples.component.ViewInject;
 import com.dimples.ui.main.book.adapter.BookAdapter;
+import com.dimples.ui.main.book.dto.BookDataManger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,11 +46,7 @@ public class BookFragment extends BaseFragment {
      */
     private void initRecyclerView() {
         rlContentMain.setLayoutManager(new LinearLayoutManager(context));
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 15; i++) {
-            list.add("数据" + i);
-        }
-        rlContentMain.setAdapter(new BookAdapter(list));
+        rlContentMain.setAdapter(new BookAdapter(context, BookDataManger.getdData()));
     }
 
     /**

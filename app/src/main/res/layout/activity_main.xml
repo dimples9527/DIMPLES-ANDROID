@@ -12,11 +12,11 @@
         android:id="@+id/bnv_bottom_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorDeepGreen"
         android:layout_gravity="bottom"
-        app:menu="@menu/bottom_bar_tabs"
+        android:background="@color/colorDeepGreen"
         app:itemIconTint="@drawable/selector_bottom_tab"
         app:itemTextColor="@drawable/selector_bottom_tab"
+        app:menu="@menu/bottom_bar_tabs"
         tools:ignore="MissingConstraints">
 
     </android.support.design.widget.BottomNavigationView>

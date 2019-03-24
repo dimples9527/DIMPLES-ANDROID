@@ -21,8 +21,6 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
 
     @BindView(R.id.fab_float_main)
     FloatingActionButton fabFloatMain;
-    @BindView(R.id.fl_content_main)
-    FrameLayout flContentMain;
     @BindView(R.id.bnv_bottom_main)
     BottomNavigationView bnvBottomMain;
     private IMainActivityContract.IPresenter presenter = new MainActivityPresenter(this);
