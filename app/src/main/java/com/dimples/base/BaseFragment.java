@@ -1,6 +1,7 @@
 package com.dimples.base;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,11 +22,13 @@ public abstract class BaseFragment extends LifeCircleMvpFragment {
 
     private static final String D_TAG = "D-BaseFragment";
     public Context context;
+    public Activity mActivity;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
+        mActivity = getActivity();
     }
 
     @Nullable

@@ -46,7 +46,7 @@ public class BookFragment extends BaseFragment {
      */
     private void initRecyclerView() {
         rlContentMain.setLayoutManager(new LinearLayoutManager(context));
-        rlContentMain.setAdapter(new BookAdapter(context, BookDataManger.getdData()));
+        rlContentMain.setAdapter(new BookAdapter(mActivity, BookDataManger.getdData()));
     }
 
     /**

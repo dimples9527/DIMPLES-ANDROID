@@ -42,12 +42,12 @@ public class BookDataManger {
         List<BookBean> data = new ArrayList<>(getVerData(5));
         BookBean bookBean1 = new BookBean();
         bookBean1.setData(getHorData(10));
-        bookBean1.setItemType(BookBean.IBookItemType.HORIZANTAL);
+        bookBean1.setItemType(BookBean.IBookItemType.HORIZONTAL);
         data.add(bookBean1);
         data.addAll(getVerData(6));
         BookBean bookBean2 = new BookBean();
         bookBean2.setData(getHorData(11));
-        bookBean2.setItemType(BookBean.IBookItemType.HORIZANTAL);
+        bookBean2.setItemType(BookBean.IBookItemType.HORIZONTAL);
         data.add(bookBean2);
         return data;
     }

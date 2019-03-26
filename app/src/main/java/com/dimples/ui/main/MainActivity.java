@@ -4,7 +4,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.widget.FrameLayout;
 
 import com.dimples.R;
 import com.dimples.base.BaseActivity;

@@ -46,6 +46,6 @@ public class BookBean {
 
     public interface IBookItemType{
         int VERTICAL = 0;
-        int HORIZANTAL = 1;
+        int HORIZONTAL = 1;
     }
 }

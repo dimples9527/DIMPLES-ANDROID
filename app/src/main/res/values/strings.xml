@@ -1,6 +1,6 @@
 <resources>
     <!--APP Name-->
-    <string name="app_name">DIMPLES</string>
+    <string name="app_name">网易课堂学习</string>
     
     <!--Home-->
     <string name="book">书架</string>
