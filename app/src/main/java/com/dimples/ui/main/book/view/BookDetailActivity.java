@@ -14,14 +14,22 @@ import android.widget.ImageView;
 import com.dimples.R;
 import com.dimples.base.BaseActivity;
 import com.dimples.component.ViewInject;
+import com.dimples.ui.main.book.IBookDetailContract;
+import com.dimples.ui.main.book.presenter.BookDetailPresenter;
 
 import butterknife.BindView;
 
+/**
+ * @author zhongyj
+ * @date 2019/3/27 21:25
+ */
 @ViewInject(LayoutId = R.layout.activity_book_detail)
-public class BookDetailActivity extends BaseActivity {
+public class BookDetailActivity extends BaseActivity implements IBookDetailContract.IView {
 
     private static final String D_TAG = "D-BookDetailActivity";
-    private static final String mBookDetailActivity = "BookDetailActivity";
+    private static final String M_BOOK_DETAIL_ACTIVITY = "BookDetailActivity";
+
+    public IBookDetailContract.IPresenter mPresenter = new BookDetailPresenter(this);
 
     @BindView(R.id.iv_title_book_detail)
     ImageView ivTitleBookDetail;
@@ -29,12 +37,19 @@ public class BookDetailActivity extends BaseActivity {
     @Override
     public void afterBindView() {
         initAnimal();
+        initGetData();
+    }
+
+    private void initGetData() {
+        mPresenter.getPatientData();
+//        GetPatientDataManager dataManager = new GetPatientDataManager();
+//        dataManager.execute("00026", "待诊");
     }
 
     @SuppressLint("ObsoleteSdkInt")
     private void initAnimal() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ViewCompat.setTransitionName(ivTitleBookDetail, mBookDetailActivity);
+            ViewCompat.setTransitionName(ivTitleBookDetail, M_BOOK_DETAIL_ACTIVITY);
             //开启转场动画
             startPostponedEnterTransition();
         }
@@ -45,10 +60,10 @@ public class BookDetailActivity extends BaseActivity {
      * 适用于Android 5.0 以上系统
      */
     @SuppressLint("ObsoleteSdkInt")
-    public static void start_5_0(Activity activity, View view) {
+    public static void start50(Activity activity, View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Intent intent = new Intent(activity, BookDetailActivity.class);
-            Pair pair = new Pair(view, mBookDetailActivity);
+            Pair pair = new Pair(view, M_BOOK_DETAIL_ACTIVITY);
             ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, pair);
             ActivityCompat.startActivity(activity, intent, optionsCompat.toBundle());
         }

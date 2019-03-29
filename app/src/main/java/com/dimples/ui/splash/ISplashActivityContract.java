@@ -6,6 +6,11 @@ import com.dimples.mvp.ILifeCircle;
 import com.dimples.mvp.IMvpView;
 import com.dimples.mvp.MvpController;
 
+/**
+  *
+  * @author zhongyj
+  * @date 2019/3/28 14:42
+  */
 public interface ISplashActivityContract {
 
     /**
@@ -24,7 +29,7 @@ public interface ISplashActivityContract {
         void initTimer();
     }
 
-    IView emptyView = new IView() {
+    IView EMPTY_VIEW = new IView() {
         @Override
         public void setTvTimer(String timer) {
 

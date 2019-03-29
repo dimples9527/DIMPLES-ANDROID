@@ -2,16 +2,13 @@ package com.dimples.ui.main.book.adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.dimples.R;
 import com.dimples.ui.main.book.dto.BookBean;
@@ -19,6 +16,11 @@ import com.dimples.ui.main.book.view.BookDetailActivity;
 
 import java.util.List;
 
+/**
+  *
+  * @author zhongyj
+  * @date 2019/3/29 12:23
+  */
 public class BookAdapter extends RecyclerView.Adapter {
 
     private List<BookBean> data;
@@ -94,7 +96,7 @@ public class BookAdapter extends RecyclerView.Adapter {
             super(itemView);
             textView = itemView.findViewById(R.id.tv_item_book);
             //点击事件绑定
-            this.itemView.setOnClickListener(v -> BookDetailActivity.start_5_0(mActivity, textView));
+            this.itemView.setOnClickListener(v -> BookDetailActivity.start50(mActivity, textView));
         }
     }
 

@@ -27,7 +27,7 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
 
     @Override
     protected IMainActivityContract.IView getEmptyView() {
-        return IMainActivityContract.emptyView;
+        return IMainActivityContract.EMPTY_VIEW;
     }
 
     /**

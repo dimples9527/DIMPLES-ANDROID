@@ -16,6 +16,11 @@ import com.dimples.mvp.view.LifeCircleMvpFragment;
 
 import butterknife.ButterKnife;
 
+/**
+  *
+  * @author zhongyj
+  * @date 2019/3/29 9:18
+  */
 @SuppressLint("Registered")
 public abstract class BaseFragment extends LifeCircleMvpFragment {
 

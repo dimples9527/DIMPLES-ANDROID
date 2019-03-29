@@ -19,6 +19,11 @@ import java.util.List;
 
 import butterknife.BindView;
 
+/**
+  *
+  * @author zhongyj
+  * @date 2019/3/29 9:18
+  */
 @ViewInject(LayoutId = R.layout.fragment_book)
 public class BookFragment extends BaseFragment {
     @BindView(R.id.tv_title_book_1)

@@ -6,6 +6,11 @@ import com.dimples.ui.main.MainActivity;
 import com.dimples.mvp.base.BaseMvpPresenter;
 import com.dimples.widget.CustomCountDownTimer;
 
+/**
+  *
+  * @author zhongyj
+  * @date 2019/3/28 14:42
+  */
 public class SplashTimerPresenter extends BaseMvpPresenter<ISplashActivityContract.IView> implements ISplashActivityContract.IPresenter {
 
     private static CustomCountDownTimer timer;
@@ -15,6 +20,7 @@ public class SplashTimerPresenter extends BaseMvpPresenter<ISplashActivityContra
         context = (Context) view;
     }
 
+    @Override
     public void initTimer() {
         timer = new CustomCountDownTimer(3, new CustomCountDownTimer.ICountDownHandler() {
             @Override
@@ -48,7 +54,7 @@ public class SplashTimerPresenter extends BaseMvpPresenter<ISplashActivityContra
      */
     @Override
     protected ISplashActivityContract.IView getEmptyView() {
-        return ISplashActivityContract.emptyView;
+        return ISplashActivityContract.EMPTY_VIEW;
     }
 
 }

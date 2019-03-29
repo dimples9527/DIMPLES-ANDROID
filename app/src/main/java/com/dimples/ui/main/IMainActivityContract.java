@@ -30,7 +30,7 @@ public interface IMainActivityContract  {
         void replaceFragment(int currentFragmentIndex);
     }
 
-    IView emptyView = new IView() {
+    IView EMPTY_VIEW = new IView() {
         @Override
         public void showFragment(Fragment fragment) {
 

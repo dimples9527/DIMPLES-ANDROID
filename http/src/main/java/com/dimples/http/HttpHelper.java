@@ -1,7 +1,10 @@
 package com.dimples.http;
 
+import com.dimples.http.okhttp.OkHttpScheduler;
+import com.dimples.http.request.IRequest;
+import com.dimples.http.request.call.ICall;
+
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * @author zhongyj
@@ -9,9 +12,23 @@ import java.util.Objects;
  */
 public class HttpHelper {
 
+    private volatile static HttpScheduler httpScheduler;
 
-    protected static Object execute(IRequest request, Map<String, Objects> params) {
-        return null;
+    public static HttpScheduler getHttpScheduler() {
+        if (httpScheduler == null) {
+            synchronized (HttpHelper.class) {
+                if (httpScheduler == null) {
+                    httpScheduler = new OkHttpScheduler();
+                }
+            }
+        }
+        return httpScheduler;
+    }
+
+    protected static Object execute(IRequest request, Map<String, Object> params) {
+        request.setParams(params);
+        ICall call = getHttpScheduler().newCall(request);
+        return getHttpScheduler().execute(call);
     }
 
 }
