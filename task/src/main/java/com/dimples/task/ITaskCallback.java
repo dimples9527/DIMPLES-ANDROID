@@ -7,6 +7,10 @@ package com.dimples.task;
   */
 interface ITaskCallback {
 
+    /**
+     * 数据请求成功回调
+     * @param o Object
+     */
     void onSuccess(Object o);
 
     void onException(Throwable throwable);
