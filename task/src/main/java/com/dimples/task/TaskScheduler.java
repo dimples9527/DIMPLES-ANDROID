@@ -21,9 +21,22 @@ public class TaskScheduler {
             //HandlerThread handleMessage运行在子线程
             @Override
             public boolean handleMessage(Message msg) {
+                switch (msg.what) {
+                    case ITaskSchedulerType.SUBMIT_TASK:
+                        doSubmitTask((AsyncTaskInstance) msg.obj);
+                        break;
+                    default:
+                        break;
+                }
                 return false;
             }
+            //创建一个线程池
+
         });
+    }
+
+    private void doSubmitTask(AsyncTaskInstance taskInstance) {
+//        executor.submit(taskInstance);
     }
 
     public static TaskScheduler getInstance() {
@@ -34,8 +47,13 @@ public class TaskScheduler {
     }
 
     public void submit(AsyncTaskInstance instance) {
-
+        handler.sendMessage(handler.obtainMessage(ITaskSchedulerType.SUBMIT_TASK, instance));
     }
+
+    interface ITaskSchedulerType {
+        int SUBMIT_TASK = 0;
+    }
+
 }
 
 

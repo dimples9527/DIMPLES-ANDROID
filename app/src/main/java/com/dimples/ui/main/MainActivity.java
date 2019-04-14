@@ -12,7 +12,12 @@ import com.dimples.ui.main.tools.MainConstantTool;
 
 import butterknife.BindView;
 
-
+/**
+ * 主界面
+ *
+ * @author zhongyj
+ * @date 2019/4/14 20:54
+ */
 @ViewInject(LayoutId = R.layout.activity_main)
 public class MainActivity extends BaseActivity implements IMainActivityContract.IView {
 
