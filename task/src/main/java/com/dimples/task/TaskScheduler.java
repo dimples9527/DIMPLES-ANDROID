@@ -3,6 +3,14 @@ package com.dimples.task;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
+import android.support.v4.util.Pools;
+
+import com.dimples.task.tools.ThreadUtil;
+
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author zhongyj
@@ -12,6 +20,10 @@ public class TaskScheduler {
 
     private static TaskScheduler instance;
     private final Handler handler;
+    private final PriorityThreadPoolExecutor executor;
+    private int CORE_POOL_SIZE = ThreadUtil.CPU_NUM + 1;
+    private int MAXIMUM_POOL_SIZE = CORE_POOL_SIZE * 3;
+    private long KEEP_ALIVE_TIME = 1;
 
     private TaskScheduler() {
         //用于消息调度的线程
@@ -30,13 +42,20 @@ public class TaskScheduler {
                 }
                 return false;
             }
-            //创建一个线程池
-
         });
+        //创建一个线程池
+        BlockingQueue<Runnable> poolQueue = new LinkedBlockingDeque<>();
+        this.executor = new PriorityThreadPoolExecutor(
+                CORE_POOL_SIZE,
+                MAXIMUM_POOL_SIZE,
+                KEEP_ALIVE_TIME,
+                TimeUnit.MINUTES,
+                poolQueue,
+                new TaskThreadFactory());
     }
 
     private void doSubmitTask(AsyncTaskInstance taskInstance) {
-//        executor.submit(taskInstance);
+        executor.submit(taskInstance);
     }
 
     public static TaskScheduler getInstance() {

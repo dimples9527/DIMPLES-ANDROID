@@ -29,6 +29,7 @@ public class BookDetailPresenter extends BasePresenter<IBookDetailContract.IView
              */
             @Override
             public void onSuccess(Object o) {
+                //获取网络结果
 
             }
 
