@@ -11,6 +11,7 @@ import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.dimples.R;
 import com.dimples.base.BaseActivity;
 import com.dimples.component.ViewInject;
 import com.dimples.ui.main.book.IBookDetailContract;
@@ -41,9 +42,6 @@ public class BookDetailActivity extends BaseActivity implements IBookDetailContr
 
     private void initGetData() {
         mPresenter.getPatientData();
-
-//        GetPatientDataManager dataManager = new GetPatientDataManager();
-//        dataManager.execute("00026", "待诊");
     }
 
     @SuppressLint("ObsoleteSdkInt")

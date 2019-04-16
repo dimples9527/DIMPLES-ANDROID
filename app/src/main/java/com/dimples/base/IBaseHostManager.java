@@ -22,4 +22,6 @@ public interface IBaseHostManager {
         }
     };
 
+    void setHostIp(IHost hostIp);
+
 }

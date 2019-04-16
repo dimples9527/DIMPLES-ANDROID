@@ -3,6 +3,7 @@ package com.dimples.http;
 import com.dimples.http.okhttp.OkHttpScheduler;
 import com.dimples.http.request.IRequest;
 import com.dimples.http.request.call.ICall;
+import com.dimples.http.result.IResult;
 
 import java.util.Map;
 
@@ -12,23 +13,23 @@ import java.util.Map;
  */
 public class HttpHelper {
 
-    private volatile static HttpScheduler httpScheduler;
+    private volatile static AbstractHttpScheduler abstractHttpScheduler;
 
-    public static HttpScheduler getHttpScheduler() {
-        if (httpScheduler == null) {
+    public static AbstractHttpScheduler getAbstractHttpScheduler() {
+        if (abstractHttpScheduler == null) {
             synchronized (HttpHelper.class) {
-                if (httpScheduler == null) {
-                    httpScheduler = new OkHttpScheduler();
+                if (abstractHttpScheduler == null) {
+                    abstractHttpScheduler = new OkHttpScheduler();
                 }
             }
         }
-        return httpScheduler;
+        return abstractHttpScheduler;
     }
 
-    protected static Object execute(IRequest request, Map<String, Object> params) {
+    protected static <T> IResult<T> execute(IRequest request, Map<String, Object> params) {
         request.setParams(params);
-        ICall call = getHttpScheduler().newCall(request);
-        return getHttpScheduler().execute(call);
+        ICall call = getAbstractHttpScheduler().newCall(request);
+        return getAbstractHttpScheduler().execute(call);
     }
 
 }

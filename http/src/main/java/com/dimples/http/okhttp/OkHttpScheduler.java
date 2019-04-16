@@ -2,14 +2,12 @@ package com.dimples.http.okhttp;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.util.Log;
 
-import com.dimples.http.HttpScheduler;
+import com.dimples.http.AbstractHttpScheduler;
 import com.dimples.http.annotation.RequestMethod;
 import com.dimples.http.request.IRequest;
 import com.dimples.http.request.call.ICall;
 
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
 
@@ -24,7 +22,7 @@ import okhttp3.Request;
  * @author zhongyj
  * @date 2019/3/27 21:46
  */
-public class OkHttpScheduler extends HttpScheduler {
+public class OkHttpScheduler extends AbstractHttpScheduler {
 
     private OkHttpClient client;
 

@@ -3,13 +3,13 @@ package com.dimples.task;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
-import android.support.v4.util.Pools;
 
+import com.dimples.task.thread.PriorityThreadPoolExecutor;
+import com.dimples.task.thread.TaskThreadFactory;
 import com.dimples.task.tools.ThreadUtil;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -21,9 +21,9 @@ public class TaskScheduler {
     private static TaskScheduler instance;
     private final Handler handler;
     private final PriorityThreadPoolExecutor executor;
-    private int CORE_POOL_SIZE = ThreadUtil.CPU_NUM + 1;
-    private int MAXIMUM_POOL_SIZE = CORE_POOL_SIZE * 3;
-    private long KEEP_ALIVE_TIME = 1;
+    private static final int CORE_POOL_SIZE = ThreadUtil.CPU_NUM + 1;
+    private static final int MAXIMUM_POOL_SIZE = CORE_POOL_SIZE * 3;
+    private static final long KEEP_ALIVE_TIME = 1;
 
     private TaskScheduler() {
         //用于消息调度的线程

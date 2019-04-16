@@ -9,15 +9,15 @@ import java.util.concurrent.FutureTask;
  * @author zhongyj
  * @date 2019/4/2 22:06
  */
-public class AsyncTaskInstance extends FutureTask {
+public class AsyncTaskInstance<T> extends FutureTask<T> {
 
-    private ITaskBackground iTaskBackground;
-    private ITaskCallback iTaskCallback;
+    private ITaskBackground<T> iTaskBackground;
+    private ITaskCallback<T> iTaskCallback;
 
-    private AsyncTaskInstance(ITaskBackground iTaskBackground, ITaskCallback iTaskCallback) {
-        super(new Callable() {
+    private AsyncTaskInstance(ITaskBackground<T> iTaskBackground, ITaskCallback<T> iTaskCallback) {
+        super(new Callable<T>() {
             @Override
-            public Object call() {
+            public T call() {
                 return iTaskBackground.onBackground();
             }
         });
@@ -53,13 +53,13 @@ public class AsyncTaskInstance extends FutureTask {
 
     private void onComplete() {
         try {
-            Object object = get();
+            T object = get();
             if (object != null) {
                 //确保成功的回调方法一定运行在主线程中
                 ThreadUtil.postMainThread(new Runnable() {
                     @Override
                     public void run() {
-                        iTaskCallback.onSuccess(object);
+                        iTaskCallback.onComplete(object);
                     }
                 });
             }

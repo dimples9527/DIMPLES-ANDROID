@@ -1,8 +1,13 @@
 package com.dimples.ui.main.book.presenter;
 
+import android.util.Log;
+
 import com.dimples.base.BasePresenter;
-import com.dimples.task.AbstractTask;
+import com.dimples.base.BaseTask;
+import com.dimples.http.result.IResult;
 import com.dimples.ui.main.book.IBookDetailContract;
+import com.dimples.ui.main.book.dto.TreatPatientResultBean;
+import com.dimples.ui.main.book.dto.TreatPatientBean;
 import com.dimples.ui.main.book.module.BookDetailHttpServer;
 
 /**
@@ -10,6 +15,8 @@ import com.dimples.ui.main.book.module.BookDetailHttpServer;
  * @date 2019/3/28 11:13
  */
 public class BookDetailPresenter extends BasePresenter<IBookDetailContract.IView> implements IBookDetailContract.IPresenter {
+
+    private static final String D_TAG = "D-BookDetailPresenter";
 
     public BookDetailPresenter(IBookDetailContract.IView view) {
         super(view);
@@ -22,31 +29,20 @@ public class BookDetailPresenter extends BasePresenter<IBookDetailContract.IView
 
     @Override
     public void getPatientData() {
-        submitTask(new AbstractTask() {
-            /**
-             * 一定要回调到主线程
-             * @param o Object
-             */
-            @Override
-            public void onSuccess(Object o) {
-                //获取网络结果
 
+        submitTask(new BaseTask<TreatPatientResultBean>() {
+            @Override
+            public IResult<TreatPatientResultBean> onBackground() {
+                return new BookDetailHttpServer<TreatPatientResultBean>().getData("00026", "待诊");
             }
 
             @Override
-            public void onException(Throwable throwable) {
-
-            }
-
-            /**
-             * 运行于子线程
-             * @return Object
-             */
-            @Override
-            public Object onBackground() {
-                return new BookDetailHttpServer().getData("00026", "待诊");
+            public void onSuccess(IResult<TreatPatientResultBean> t) {
+                TreatPatientResultBean data = t.getData();
+                Log.i(D_TAG, "onSuccess: " + data);
             }
         });
+
     }
 }
 

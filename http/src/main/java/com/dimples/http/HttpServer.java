@@ -1,6 +1,7 @@
 package com.dimples.http;
 
 import com.dimples.http.request.IRequest;
+import com.dimples.http.result.IResult;
 
 import java.util.Map;
 
@@ -10,7 +11,7 @@ import java.util.Map;
  */
 public class HttpServer {
 
-    protected Object execute(IRequest request, Map<String, Object> params) {
+    protected <T> IResult<T> execute(IRequest request, Map<String, Object> params) {
         return HttpHelper.execute(request, params);
     }
 }

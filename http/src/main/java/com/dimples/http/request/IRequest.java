@@ -1,7 +1,9 @@
 package com.dimples.http.request;
 
+import com.dimples.http.parser.IParser;
 import com.dimples.http.request.host.IHost;
 
+import java.lang.reflect.Type;
 import java.util.Map;
 
 /**
@@ -27,7 +29,7 @@ public interface IRequest {
     /**
      * 获取参数
      *
-     * @return Map<String, Object>
+     * @return Map<String       ,               Object>
      */
     Map<String, Object> getParams();
 
@@ -44,5 +46,19 @@ public interface IRequest {
      * @return String
      */
     String getPath();
+
+    /**
+     * 获取解析器
+     *
+     * @return IParser
+     */
+    IParser getParser();
+
+    /**
+     * 获取要转换的实体类
+     *
+     * @return Type
+     */
+    Type getType();
 
 }

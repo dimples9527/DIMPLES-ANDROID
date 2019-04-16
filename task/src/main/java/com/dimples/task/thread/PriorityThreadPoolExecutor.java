@@ -1,4 +1,4 @@
-package com.dimples.task;
+package com.dimples.task.thread;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.RejectedExecutionHandler;

@@ -1,8 +1,10 @@
 package com.dimples.http.request;
 
+import com.dimples.http.parser.IParser;
 import com.dimples.http.annotation.RequestMethod;
 import com.dimples.http.request.host.IHost;
 
+import java.lang.reflect.Type;
 import java.util.Map;
 
 /**
@@ -12,6 +14,8 @@ import java.util.Map;
 public class HttpRequest implements IRequest {
 
     protected IHost host;
+    protected Type type;
+    protected IParser resultParser;
 
     private Map<String, Object> params;
 
@@ -43,6 +47,16 @@ public class HttpRequest implements IRequest {
     @Override
     public String getPath() {
         return path;
+    }
+
+    @Override
+    public IParser getParser() {
+        return resultParser;
+    }
+
+    @Override
+    public Type getType() {
+        return type;
     }
 
 }
