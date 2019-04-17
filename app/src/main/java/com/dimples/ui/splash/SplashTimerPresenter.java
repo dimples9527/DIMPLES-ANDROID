@@ -17,7 +17,7 @@ public class SplashTimerPresenter extends BaseMvpPresenter<ISplashActivityContra
 
     public SplashTimerPresenter(ISplashActivityContract.IView view) {
         super(view);
-        context = (Context) view;
+        mContext = (Context) view;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class SplashTimerPresenter extends BaseMvpPresenter<ISplashActivityContra
 
             @Override
             public void onFinish() {
-                getView().pageSwitch(context, MainActivity.class);
+                getView().pageSwitch(mContext, MainActivity.class);
             }
         });
         timer.start();

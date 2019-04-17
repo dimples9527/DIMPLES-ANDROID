@@ -61,7 +61,7 @@ public class BookDetailActivity extends BaseActivity implements IBookDetailContr
     public static void start50(Activity activity, View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Intent intent = new Intent(activity, BookDetailActivity.class);
-            Pair pair = new Pair(view, M_BOOK_DETAIL_ACTIVITY);
+            Pair pair = new Pair<>(view, M_BOOK_DETAIL_ACTIVITY);
             ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, pair);
             ActivityCompat.startActivity(activity, intent, optionsCompat.toBundle());
         }

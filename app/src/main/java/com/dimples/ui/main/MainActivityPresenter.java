@@ -10,19 +10,23 @@ import com.dimples.ui.main.live.LiveFragment;
 import com.dimples.ui.main.mine.MineFragment;
 import com.dimples.ui.main.tools.MainConstantTool;
 
+/**
+  *
+  * @author zhongyj
+  * @date 2019/4/17 19:55
+  */
 public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContract.IView> implements IMainActivityContract.IPresenter {
 
     private static final String D_TAG = "D-MainActivityPresenter";
-    private Fragment fragments[] = new Fragment[3];
+    private Fragment[] fragments = new Fragment[3];
     /**
      * 当前Fragment角标
      */
     private int currentFragmentIndex;
-//    private int currentCheckedId;
 
     public MainActivityPresenter(IMainActivityContract.IView view) {
         super(view);
-        context = (Context) view;
+        mContext = (Context) view;
     }
 
     @Override

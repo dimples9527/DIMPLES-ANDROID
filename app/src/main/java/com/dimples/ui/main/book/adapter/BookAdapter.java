@@ -88,6 +88,8 @@ public class BookAdapter extends RecyclerView.Adapter {
         return data.get(position).getItemType();
     }
 
+
+
     class BookViewHolder extends RecyclerView.ViewHolder {
 
         TextView textView;
