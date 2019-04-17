@@ -10,6 +10,11 @@ import com.dimples.mvp.view.LifeCircleMvpActivity;
 
 import butterknife.ButterKnife;
 
+/**
+  *
+  * @author zhongyj
+  * @date 2019/4/17 15:21
+  */
 @SuppressLint("Registered")
 public abstract class BaseActivity extends LifeCircleMvpActivity {
 

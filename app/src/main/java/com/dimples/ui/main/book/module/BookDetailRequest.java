@@ -3,7 +3,7 @@ package com.dimples.ui.main.book.module;
 import com.dimples.base.BaseHttpRequest;
 import com.dimples.http.request.IRequest;
 import com.dimples.http.annotation.RequestMethod;
-import com.dimples.ui.main.book.dto.TreatPatientResultBean;
+import com.dimples.ui.main.book.bean.TreatPatientResultBean;
 
 /**
  * @author zhongyj

@@ -1,5 +1,7 @@
 package com.dimples.base;
 
+import android.content.Context;
+
 import com.dimples.mvp.IMvpView;
 import com.dimples.mvp.base.BaseMvpPresenter;
 import com.dimples.task.AbstractTask;
@@ -12,6 +14,8 @@ import com.dimples.task.TaskHelper;
  * @date 2019/3/28 11:46
  */
 public abstract class BasePresenter<T extends IMvpView> extends BaseMvpPresenter<T> {
+
+    public Context context;
 
     public BasePresenter(T view) {
         super(view);

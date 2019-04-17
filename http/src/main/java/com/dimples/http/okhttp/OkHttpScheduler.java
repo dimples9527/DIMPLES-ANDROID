@@ -1,15 +1,20 @@
 package com.dimples.http.okhttp;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
 import com.dimples.http.AbstractHttpScheduler;
 import com.dimples.http.annotation.RequestMethod;
+import com.dimples.http.https.Https;
 import com.dimples.http.request.IRequest;
 import com.dimples.http.request.call.ICall;
 
 import java.util.Map;
 import java.util.Objects;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
 
 import okhttp3.Call;
 import okhttp3.HttpUrl;
@@ -65,9 +70,18 @@ public class OkHttpScheduler extends AbstractHttpScheduler {
         return new OkHttpCall(request, call);
     }
 
+    @SuppressLint("BadHostnameVerifier")
     private OkHttpClient getClient() {
         if (client == null) {
-            client = new OkHttpClient();
+            OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
+            builder.sslSocketFactory(Https.getSSLSocketFactory());
+            builder.hostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            });
+            client = builder.build();
         }
         return client;
     }

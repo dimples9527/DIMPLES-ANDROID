@@ -15,8 +15,6 @@ import com.dimples.mvp.presenter.LifeCircleMvpPresenter;
  */
 public abstract class BaseMvpPresenter<T extends IMvpView> extends LifeCircleMvpPresenter<T> {
 
-    public Context context;
-
     public BaseMvpPresenter(T view) {
         super(view);
     }

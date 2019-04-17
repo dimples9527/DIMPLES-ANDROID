@@ -1,4 +1,4 @@
-package com.dimples.ui.main.book.dto;
+package com.dimples.ui.main.book.bean;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -6,8 +6,7 @@ import com.dimples.base.BasePresenter;
 import com.dimples.base.BaseTask;
 import com.dimples.http.result.IResult;
 import com.dimples.ui.main.book.IBookDetailContract;
-import com.dimples.ui.main.book.dto.TreatPatientResultBean;
-import com.dimples.ui.main.book.dto.TreatPatientBean;
+import com.dimples.ui.main.book.bean.TreatPatientResultBean;
 import com.dimples.ui.main.book.module.BookDetailHttpServer;
 
 /**

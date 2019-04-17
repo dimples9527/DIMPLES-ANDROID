@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.dimples.R;
-import com.dimples.ui.main.book.dto.BookBean;
+import com.dimples.ui.main.book.bean.BookBean;
 import com.dimples.ui.main.book.view.BookDetailActivity;
 
 import java.util.List;

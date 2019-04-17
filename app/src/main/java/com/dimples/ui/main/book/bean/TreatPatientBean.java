@@ -1,8 +1,4 @@
-package com.dimples.ui.main.book.dto;
-
-import android.support.annotation.NonNull;
-
-import java.util.Date;
+package com.dimples.ui.main.book.bean;
 
 /**
   *

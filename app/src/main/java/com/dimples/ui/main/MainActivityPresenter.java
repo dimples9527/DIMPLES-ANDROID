@@ -6,7 +6,7 @@ import android.util.Log;
 
 import com.dimples.mvp.base.BaseMvpPresenter;
 import com.dimples.ui.main.book.BookFragment;
-import com.dimples.ui.main.discover.DiscoverFragment;
+import com.dimples.ui.main.live.LiveFragment;
 import com.dimples.ui.main.mine.MineFragment;
 import com.dimples.ui.main.tools.MainConstantTool;
 
@@ -102,7 +102,7 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
                 fragment = new BookFragment();
                 break;
             case MainConstantTool.DISCOVER:
-                fragment = new DiscoverFragment();
+                fragment = new LiveFragment();
                 break;
             case MainConstantTool.MINE:
                 fragment = new MineFragment();

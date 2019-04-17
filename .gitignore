@@ -2,13 +2,7 @@
 .gradle
 /local.properties
 /.idea
-/.idea/caches
 /.idea/dictionaries
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/inspectionProfiles
-/.idea/codeStyles
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
 /.smartfox_info.xml
@@ -18,5 +12,11 @@
 /captures
 .externalNativeBuild
 .idea/smartfox_info.xml
-.idea/vcs.xml
 app/libs/
+http/libs/
+http/src/main/java/com/dimples/http/base/
+http/src/main/res/drawable/
+mvp/libs/
+mvp/src/main/res/drawable/
+task/libs/
+task/src/main/res/drawable/

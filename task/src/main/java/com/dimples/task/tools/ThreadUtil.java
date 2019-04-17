@@ -4,6 +4,10 @@ package com.dimples.task.tools;
 import android.os.Handler;
 import android.os.Looper;
 
+/**
+ * @author zhongyj
+ * @date 2019/4/16 20:54
+ */
 public class ThreadUtil {
 
     /**

@@ -12,10 +12,7 @@ import com.dimples.R;
 import com.dimples.base.BaseFragment;
 import com.dimples.component.ViewInject;
 import com.dimples.ui.main.book.adapter.BookAdapter;
-import com.dimples.ui.main.book.dto.BookDataManger;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.dimples.ui.main.book.bean.BookDataManger;
 
 import butterknife.BindView;
 
