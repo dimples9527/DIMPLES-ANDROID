@@ -9,4 +9,9 @@
 
     <!--action-->
     <string name="action_skip">跳过</string>
+    <string name="load_more">加载更多</string>
+
+
+
+    <string name="show_more_behavior">.ui.index.live.design.BottomShowBehavior</string>
 </resources>

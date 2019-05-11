@@ -9,7 +9,7 @@ import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.widget.TextView;
 
-import com.dimples.ui.main.MainActivity;
+import com.dimples.ui.index.IndexActivity;
 import com.dimples.R;
 import com.dimples.base.BaseActivity;
 import com.dimples.component.ViewInject;
@@ -60,7 +60,7 @@ public class SplashActivity extends BaseActivity implements ISplashActivityContr
 
     @OnClick(R.id.tv_hint_splash)
     public void onClick() {
-        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+        startActivity(new Intent(SplashActivity.this, IndexActivity.class));
         finish();
     }
 

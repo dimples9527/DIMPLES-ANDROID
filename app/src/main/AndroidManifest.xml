@@ -18,7 +18,7 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         tools:targetApi="n">
         <!--Main Activity-->
-        <activity android:name=".ui.main.MainActivity" />
+        <activity android:name=".ui.index.IndexActivity" />
 
         <!--Splash Activity-->
         <activity android:name=".ui.splash.SplashActivity"
@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <!--BookDetail Activity-->
-        <activity android:name=".ui.main.book.view.BookDetailActivity" />
+        <activity android:name=".ui.index.book.view.BookDetailActivity" />
     </application>
 
 </manifest>

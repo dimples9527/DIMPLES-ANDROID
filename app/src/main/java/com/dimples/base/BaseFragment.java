@@ -26,13 +26,13 @@ public abstract class BaseFragment extends LifeCircleMvpFragment {
 
 
     private static final String D_TAG = "D-BaseFragment";
-    public Context context;
+    public Context mContext;
     public Activity mActivity;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.context = context;
+        this.mContext = context;
         mActivity = getActivity();
     }
 
@@ -58,7 +58,7 @@ public abstract class BaseFragment extends LifeCircleMvpFragment {
     }
 
     private View initFragmentView(LayoutInflater inflater, int fragmentLayoutId) {
-        return inflater.from(context).inflate(fragmentLayoutId, null);
+        return inflater.from(mContext).inflate(fragmentLayoutId, null);
     }
 
 

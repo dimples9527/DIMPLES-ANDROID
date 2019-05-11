@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--name为声明属性集合, 可以随意取, 最好是和自定义的view一样的名称，方便管理-->
+    <declare-styleable name="LikeClickView">
+        <attr name="like" format="boolean" />
+    </declare-styleable>
+
+</resources>
