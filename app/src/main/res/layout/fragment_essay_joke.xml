@@ -7,10 +7,7 @@
     android:orientation="vertical">
 
     <com.dimples.widget.LikeClickView
-        app:like="true"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="?android:attr/selectableItemBackgroundBorderless"
+        app:like="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
          />

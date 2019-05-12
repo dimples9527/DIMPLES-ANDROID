@@ -4,6 +4,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.widget.FrameLayout;
 
 import com.dimples.R;
 import com.dimples.base.BaseActivity;
@@ -25,8 +26,10 @@ public class IndexActivity extends BaseActivity implements IIndexActivityContrac
 
     @BindView(R.id.fab_float_main)
     FloatingActionButton fabFloatMain;
+    @BindView(R.id.fl_content_main)
+    FrameLayout mFlContentMain;
     @BindView(R.id.bnv_bottom_main)
-    BottomNavigationView bnvBottomMain;
+    BottomNavigationView mBnvBottomMain;
     private IIndexActivityContract.IPresenter presenter = new IndexActivityPresenter(this);
 
     @Override
@@ -36,7 +39,7 @@ public class IndexActivity extends BaseActivity implements IIndexActivityContrac
     }
 
     private void initBottomNavigationViewSelected() {
-        bnvBottomMain.setOnNavigationItemSelectedListener(item -> {
+        mBnvBottomMain.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.item_book:
                     Log.i(D_TAG, "book");

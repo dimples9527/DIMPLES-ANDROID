@@ -1,5 +1,7 @@
 package com.dimples.widget;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -33,6 +35,9 @@ public class LikeClickView extends View {
     private Paint mBitmapPaint;
     private int mLeft;
     private int mTop;
+    private float mHandScale = 1.0f;
+    private float mCenterX;
+    private float mCenterY;
 
     public LikeClickView(Context context) {
         this(context, null, 0);
@@ -117,10 +122,14 @@ public class LikeClickView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         Bitmap handBitmap = mIsLike ? mLikeBitmap : mUnLikeBitmap;
+        //使用canvas :scale及其他的效果方法时，必须先调用save 然后再调用restore （这两个方法成对出现）
+        canvas.save();
+        canvas.scale(mHandScale, mHandScale, mCenterX, mCenterY);
         //根据图片在画布上画出图形
         canvas.drawBitmap(handBitmap, mLeft, mTop, mBitmapPaint);
+        canvas.restore();
+
         if (mIsLike) {
             canvas.drawBitmap(mShiningLikeBitmap, mLeft + 10, 0, mBitmapPaint);
         }
@@ -137,6 +146,8 @@ public class LikeClickView extends View {
         int bitmapHeight = mUnLikeBitmap.getHeight();
         mLeft = (measureWidth - bitmapWidth) / 2;
         mTop = (measureHeight - bitmapHeight) / 2;
+        mCenterX = measureWidth / 2.0f;
+        mCenterY = measureHeight / 2.0f;
     }
 
     /**
@@ -177,6 +188,31 @@ public class LikeClickView extends View {
      */
     private void onClick() {
         mIsLike = !mIsLike;
+        //方法一 常用
+        // 属性handScale可自己定义，需要有set方法
+        //ObjectAnimator handScale = ObjectAnimator.ofFloat(this, "handScale", 1.0f, 0.8f, 1.0f);
+        //handScale.setDuration(250);
+        //handScale.start();
+
+        //方法二
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(1.0f, 0.5f, 1.0f);
+        valueAnimator.setDuration(250);
+        valueAnimator.start();
+        valueAnimator.addUpdateListener(animation -> {
+            mHandScale = (float) animation.getAnimatedValue();
+            //重绘
+            invalidate();
+        });
+
+    }
+
+    /**
+     * 使用ObjectAnimator，系统会自动调用该属性的set方法
+     *
+     * @param value float
+     */
+    public void setHandScale(float value) {
+        this.mHandScale = value;
         //重绘
         invalidate();
     }

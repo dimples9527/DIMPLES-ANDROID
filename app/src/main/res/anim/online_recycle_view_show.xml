@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--duration:动画时间-->
+    <translate
+        android:duration="800"
+        android:fromXDelta="-100%"
+        android:fromYDelta="0"
+        android:toXDelta="0"
+        android:toYDelta="0" />
+
+    <!--从不可见到可见-->
+    <alpha
+        android:duration="800"
+        android:fromAlpha="0"
+        android:toAlpha="1" />
+</set>

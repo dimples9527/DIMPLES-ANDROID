@@ -1,5 +1,6 @@
 package com.dimples.ui.index;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -11,10 +12,10 @@ import com.dimples.ui.index.mine.MineFragment;
 import com.dimples.ui.index.tools.IndexConstantTool;
 
 /**
-  *
-  * @author zhongyj
-  * @date 2019/4/17 19:55
-  */
+ * @author zhongyj
+ * @date 2019/4/17 19:55
+ */
+@SuppressLint("LongLogTag")
 public class IndexActivityPresenter extends BaseMvpPresenter<IIndexActivityContract.IView> implements IIndexActivityContract.IPresenter {
 
     private static final String D_TAG = "D-IndexActivityPresenter";
@@ -49,9 +50,9 @@ public class IndexActivityPresenter extends BaseMvpPresenter<IIndexActivityContr
      *
      * @param currentFragmentIndex int
      */
+
     @Override
     public void replaceFragment(int currentFragmentIndex) {
-        Log.i(D_TAG, "IndexActivityPresenter-----------------replaceFragment----currentFragmentIndex:" + currentFragmentIndex);
         for (int i = 0; i < fragments.length; i++) {
             if (currentFragmentIndex != i) {
                 if (fragments[i] != null) {

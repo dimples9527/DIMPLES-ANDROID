@@ -4,6 +4,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.animation.AnimationUtils;
 
 import com.dimples.R;
 import com.dimples.base.BaseFragment;
@@ -27,21 +28,23 @@ public class OnlineFragment extends BaseFragment implements IBookDetailContract.
     @BindView(R.id.abl_online)
     AppBarLayout mAblOnline;
     @BindView(R.id.rv_online)
-    RecyclerView mRvOnline;
+    RecyclerView mRvOnlineRecycleView;
 
     private IBookDetailContract.IPresenter mPresenter = new BookDetailPresenter(this);
 
     @Override
     public void afterBindView() {
-        mRvOnline.setLayoutManager(new LinearLayoutManager(mContext));
+        mRvOnlineRecycleView.setLayoutManager(new LinearLayoutManager(mContext));
+        //为RecycleView设置一个补间动画
+        mRvOnlineRecycleView.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.online_recycle_view_show));
         mPresenter.getPatientData();
     }
 
     @Override
     public void showData(TreatPatientResultBean data) {
-        if (mRvOnline.getAdapter() == null) {
+        if (mRvOnlineRecycleView.getAdapter() == null) {
             OnlineRecycleAdapter adapter = new OnlineRecycleAdapter(data);
-            mRvOnline.setAdapter(adapter);
+            mRvOnlineRecycleView.setAdapter(adapter);
         }
     }
 }
