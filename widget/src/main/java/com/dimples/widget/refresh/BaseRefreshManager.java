@@ -1,4 +1,4 @@
-package com.dimples.widget;
+package com.dimples.widget.refresh;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -42,6 +42,13 @@ public abstract class BaseRefreshManager {
      * 正在刷新
      */
     public abstract void refreshing();
+
+    /**
+     * 下拉刷新的百分比
+     *
+     * @param percent float
+     */
+    public abstract void downRefreshPercent(float percent);
 }
 
 

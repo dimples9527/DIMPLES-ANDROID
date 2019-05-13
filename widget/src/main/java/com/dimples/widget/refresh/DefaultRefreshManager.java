@@ -1,9 +1,11 @@
-package com.dimples.widget;
+package com.dimples.widget.refresh;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
+
+import com.dimples.widget.R;
 
 /**
  * 默认的下拉刷新管理器
@@ -46,6 +48,11 @@ public class DefaultRefreshManager extends BaseRefreshManager {
     @Override
     public void refreshing() {
         mTvRefresh.setText("正在刷新");
+    }
+
+    @Override
+    public void downRefreshPercent(float percent) {
+
     }
 
 }

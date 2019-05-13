@@ -1,16 +1,18 @@
-package com.dimples.widget;
+package com.dimples.widget.refresh;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 /**
  * 下拉刷新布局
@@ -36,6 +38,12 @@ public class RefreshLayout extends LinearLayout {
      * 正在刷新回调接口
      */
     private RefreshListener mRefreshListener;
+    private int mInterceptDowY;
+    private int mInterceptDowX;
+    private int downY;
+    private RecyclerView mRecyclerView;
+    private View mScrollView;
+
 
     public RefreshLayout(Context context) {
         super(context);
@@ -78,6 +86,7 @@ public class RefreshLayout extends LinearLayout {
     private void initHeaderView() {
         setOrientation(VERTICAL);
         mHeaderView = mRefreshManager.getHeaderView();
+        //调用测量方法
         mHeaderView.measure(0, 0);
         int headerViewHeight = mHeaderView.getMeasuredHeight();
         LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, headerViewHeight);
@@ -106,25 +115,33 @@ public class RefreshLayout extends LinearLayout {
          * 刷新中回调方法
          */
         void onRefreshing();
+
     }
-
-
-    private int downY;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                // TODO: 2019/5/13 为什么没有触发到这个事件
                 downY = (int) event.getY();
                 return true;
             case MotionEvent.ACTION_MOVE:
                 int moveY = (int) event.getY();
+                if (downY == 0) {
+                    downY = mInterceptDowY;
+                }
                 int dy = moveY - downY;
-                Log.i(D_TAG, "onTouchEvent: " + dy);
+                Log.i(D_TAG, "onTouchEvent--- downY: " + downY + ",moveY: " + moveY + ",mInterceptDowY: " + mInterceptDowY + ",dy: " + dy);
                 if (dy > 0) {
                     LayoutParams params = getHeadViewLayoutParams();
                     //添加阻尼效果  （ /1.8f ）
                     int topMargin = (int) Math.min(dy / 1.8f + mMinHeaderViewHeight, mMaxHeaderViewHeight);
+                    //这个事件的处理是为了 不断回调这个 比例 用于 一些 视觉效果
+                    if (topMargin <= 0) {
+                        // 0 ~ 1 进行变化
+                        float percent = ((-mMinHeaderViewHeight) - (-topMargin)) * 1.0f / (-mMinHeaderViewHeight);
+                        mRefreshManager.downRefreshPercent(percent);
+                    }
                     //设置控件的状态
                     if (topMargin < 0 && mCurrentRefreshState != RefreshState.DOWN_REFRESH) {
                         mCurrentRefreshState = RefreshState.DOWN_REFRESH;
@@ -153,11 +170,77 @@ public class RefreshLayout extends LinearLayout {
     }
 
     /**
+     * 这个方法回调时  可以获取当前ViewGroup子View
+     */
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        View childAt = getChildAt(0);
+        //获取RecyclerView
+        if (childAt instanceof RecyclerView) {
+            mRecyclerView = (RecyclerView) childAt;
+        }
+        //比如获取 ScrollView
+        if (childAt instanceof ScrollView) {
+            mScrollView = childAt;
+        }
+    }
+
+    /**
+     * 处理事件分发
+     *
+     * @param ev MotionEvent
+     * @return boolean
+     */
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                mInterceptDowY = (int) ev.getY();
+                mInterceptDowX = (int) ev.getX();
+                break;
+            case MotionEvent.ACTION_MOVE:
+                //1、确定滑动的一个方向，只有上下滑动才会触发
+                int dy = (int) (ev.getY() - mInterceptDowY);
+                int dx = (int) (ev.getX() - mInterceptDowX);
+                if (Math.abs(dy) > Math.abs(dx) && dy > 0) {
+                    if (handleChildViewIsTop()) {
+                        //上下滑动
+                        return true;
+                    }
+                }
+                break;
+            default:
+                break;
+
+        }
+        return super.onInterceptTouchEvent(ev);
+    }
+
+    /**
+     * 判断子View 是否是 滑动到顶端的
+     *
+     * @return boolean
+     */
+    private boolean handleChildViewIsTop() {
+        if (mRecyclerView != null) {
+            return RefreshScrollingUtil.isRecyclerViewToTop(mRecyclerView);
+        }
+
+        if (mScrollView != null) {
+            return RefreshScrollingUtil.isScrollViewOrWebViewToTop(mScrollView);
+        }
+        // TODO: 2019/4/21  是否是ScrollView 到达顶端
+        return false;
+    }
+
+    /**
      * 判断手指松开时是否应该处理
      *
      * @return boolean
      */
     private boolean handleEventUp() {
+        downY = 0;
         final LayoutParams params = getHeadViewLayoutParams();
         if (mCurrentRefreshState == RefreshState.DOWN_REFRESH) {
             //隐藏刷新动画
@@ -220,8 +303,6 @@ public class RefreshLayout extends LinearLayout {
                 break;
             case REFRESHING:
                 mRefreshManager.refreshing();
-                break;
-            case REFRESH_OVEW:
                 break;
             default:
                 break;
