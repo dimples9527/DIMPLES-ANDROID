@@ -15,7 +15,6 @@ import com.dimples.widget.R;
  */
 public class DefaultRefreshManager extends BaseRefreshManager {
 
-
     private TextView mTvRefresh;
 
     public DefaultRefreshManager(Context context) {

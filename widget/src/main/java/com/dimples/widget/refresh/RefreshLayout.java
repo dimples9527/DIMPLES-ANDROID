@@ -100,6 +100,7 @@ public class RefreshLayout extends LinearLayout {
      * 完成刷新
      */
     public void refreshOver() {
+        //隐藏刷新动画
         hideHeadView(getHeadViewLayoutParams());
     }
 
@@ -122,7 +123,7 @@ public class RefreshLayout extends LinearLayout {
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                // TODO: 2019/5/13 为什么没有触发到这个事件
+                // TODO: 2019/5/13 没有拦截这个事件，在ViewGroup中不会触发，根据事件分发，会交给子View处理
                 downY = (int) event.getY();
                 return true;
             case MotionEvent.ACTION_MOVE:
@@ -158,7 +159,6 @@ public class RefreshLayout extends LinearLayout {
                 return true;
             case MotionEvent.ACTION_UP:
                 if (handleEventUp()) {
-
                     return true;
                 }
                 break;
@@ -167,23 +167,6 @@ public class RefreshLayout extends LinearLayout {
         }
         performClick();
         return super.onTouchEvent(event);
-    }
-
-    /**
-     * 这个方法回调时  可以获取当前ViewGroup子View
-     */
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-        View childAt = getChildAt(0);
-        //获取RecyclerView
-        if (childAt instanceof RecyclerView) {
-            mRecyclerView = (RecyclerView) childAt;
-        }
-        //比如获取 ScrollView
-        if (childAt instanceof ScrollView) {
-            mScrollView = childAt;
-        }
     }
 
     /**
@@ -232,6 +215,23 @@ public class RefreshLayout extends LinearLayout {
         }
         // TODO: 2019/4/21  是否是ScrollView 到达顶端
         return false;
+    }
+
+    /**
+     * 这个方法回调时  可以获取当前ViewGroup子View
+     */
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        View childAt = getChildAt(0);
+        //获取RecyclerView
+        if (childAt instanceof RecyclerView) {
+            mRecyclerView = (RecyclerView) childAt;
+        }
+        //比如获取 ScrollView
+        if (childAt instanceof ScrollView) {
+            mScrollView = childAt;
+        }
     }
 
     /**

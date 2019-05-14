@@ -8,6 +8,9 @@ import com.dimples.base.BaseFragment;
 import com.dimples.component.ViewInject;
 import com.dimples.ui.index.book.bean.TreatPatientResultBean;
 import com.dimples.ui.index.live.adapter.OnlineRecycleAdapter;
+import com.dimples.ui.index.live.fragment.presenter.IReadContract;
+import com.dimples.ui.index.live.fragment.presenter.ReadPresenter;
+import com.dimples.ui.index.live.refresh.MeiTuanRefreshManager;
 import com.dimples.widget.refresh.RefreshLayout;
 
 import butterknife.BindView;
@@ -29,10 +32,11 @@ public class ReadFragment extends BaseFragment implements IReadContract.IView {
     @Override
     public void afterBindView() {
         initRecycleView();
-        mRefreshRead.setRefreshManager();
-        mRefreshRead.setRefreshListener(
-                () -> mRefreshRead.postDelayed(
-                        () -> mRefreshRead.refreshOver(), 2000));
+        //采用用户默认的下拉刷新
+//        mRefreshRead.setRefreshManager();
+        //采用用户自定义的方式
+        mRefreshRead.setRefreshManager(new MeiTuanRefreshManager(mContext));
+        mRefreshRead.setRefreshListener(() -> mRefreshRead.postDelayed(() -> mRefreshRead.refreshOver(), 2000));
     }
 
     private void initRecycleView() {
@@ -42,8 +46,10 @@ public class ReadFragment extends BaseFragment implements IReadContract.IView {
 
     @Override
     public void setAdapterView(TreatPatientResultBean resultBean) {
-        mRvRecycleViewRead.setLayoutManager(new LinearLayoutManager(mContext));
-        mRvRecycleViewRead.setAdapter(new OnlineRecycleAdapter(resultBean));
+        if (mRvRecycleViewRead.getAdapter() == null) {
+            mRvRecycleViewRead.setLayoutManager(new LinearLayoutManager(mContext));
+            mRvRecycleViewRead.setAdapter(new OnlineRecycleAdapter(resultBean));
+        }
     }
 }
 

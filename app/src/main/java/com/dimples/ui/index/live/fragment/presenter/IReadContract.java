@@ -1,4 +1,4 @@
-package com.dimples.ui.index.live.fragment;
+package com.dimples.ui.index.live.fragment.presenter;
 
 import com.dimples.mvp.ILifeCircle;
 import com.dimples.mvp.IMvpView;

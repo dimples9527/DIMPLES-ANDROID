@@ -1,4 +1,4 @@
-package com.dimples.ui.index.live.fragment;
+package com.dimples.ui.index.live.fragment.presenter;
 
 import com.dimples.base.BasePresenter;
 import com.dimples.ui.index.book.bean.TreatPatientBean;
