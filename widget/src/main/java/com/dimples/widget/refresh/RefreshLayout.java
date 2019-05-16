@@ -340,10 +340,6 @@ public class RefreshLayout extends LinearLayout {
          * 正在刷新
          */
         REFRESHING,
-        /**
-         * 刷新完成
-         */
-        REFRESH_OVEW
     }
 }
 

@@ -38,7 +38,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     //网络框架
-    implementation 'com.squareup.okhttp3:okhttp:3.14.0'
+    api 'com.squareup.okhttp3:okhttp:3.14.0'
     //数据解析
     implementation 'com.google.code.gson:gson:2.8.5'
 }

@@ -2,6 +2,7 @@ package com.dimples.ui.splash;
 
 import android.content.Context;
 
+import com.dimples.annotation.MvpEmptyViewFactory;
 import com.dimples.mvp.ILifeCircle;
 import com.dimples.mvp.IMvpView;
 import com.dimples.mvp.MvpController;
@@ -16,6 +17,7 @@ public interface ISplashActivityContract {
     /**
      * View层——视图逻辑
      */
+    @MvpEmptyViewFactory
     interface IView extends IMvpView {
         void setTvTimer(String timer);
 

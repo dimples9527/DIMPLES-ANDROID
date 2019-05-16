@@ -60,7 +60,8 @@ public class SplashActivity extends BaseActivity implements ISplashActivityContr
 
     @OnClick(R.id.tv_hint_splash)
     public void onClick() {
-        startActivity(new Intent(SplashActivity.this, IndexActivity.class));
+        Intent intent = new Intent(SplashActivity.this, IndexActivity.class);
+        startActivity(intent);
         finish();
     }
 

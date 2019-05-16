@@ -1,1 +1,1 @@
-include ':app', ':mvp', ':http', ':task', ':widget'
+include ':app', ':mvp', ':http', ':task', ':widget', ':annotation', ':apt'
