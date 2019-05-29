@@ -31,21 +31,5 @@ public interface ISplashActivityContract {
         void initTimer();
     }
 
-    IView EMPTY_VIEW = new IView() {
-        @Override
-        public void setTvTimer(String timer) {
-
-        }
-
-        @Override
-        public void pageSwitch(Context context, Class<?> cls) {
-
-        }
-
-        @Override
-        public MvpController getMvpController() {
-            return null;
-        }
-    };
 
 }

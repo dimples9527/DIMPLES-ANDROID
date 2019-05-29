@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.dimples.base.BasePresenter;
 import com.dimples.ui.index.IndexActivity;
-import com.dimples.mvp.base.BaseMvpPresenter;
 import com.dimples.widget.CustomCountDownTimer;
 
 /**
@@ -16,7 +15,7 @@ public class SplashTimerPresenter extends BasePresenter<ISplashActivityContract.
 
     private static CustomCountDownTimer timer;
 
-    public SplashTimerPresenter(ISplashActivityContract.IView view) {
+    SplashTimerPresenter(ISplashActivityContract.IView view) {
         super(view);
         mContext = (Context) view;
     }
@@ -48,14 +47,5 @@ public class SplashTimerPresenter extends BasePresenter<ISplashActivityContract.
         cancel();
     }
 
-    /**
-     * 防止 空指针异常
-     *
-     * @return ISplashActivityContract.IView
-     */
-    @Override
-    protected ISplashActivityContract.IView getEmptyView() {
-        return ISplashActivityContract.EMPTY_VIEW;
-    }
 
 }

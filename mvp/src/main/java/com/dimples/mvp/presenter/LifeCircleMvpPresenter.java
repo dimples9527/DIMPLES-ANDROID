@@ -33,6 +33,7 @@ public abstract class LifeCircleMvpPresenter<T extends IMvpView> implements ILif
      *
      * @param iMvpView IMvpView
      */
+    @SuppressWarnings("unchecked")
     @Override
     public void attachView(IMvpView iMvpView) {
         if (null == weakReference) {
@@ -62,6 +63,10 @@ public abstract class LifeCircleMvpPresenter<T extends IMvpView> implements ILif
         return view;
     }
 
+    /**
+     *
+     * @return T
+     */
     protected abstract T getEmptyView();
 }
 

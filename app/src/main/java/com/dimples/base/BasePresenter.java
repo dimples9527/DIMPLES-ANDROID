@@ -2,8 +2,8 @@ package com.dimples.base;
 
 import android.content.Context;
 
-import com.dimples.annotation.MvpEmptyViewFactory;
 import com.dimples.mvp.IMvpView;
+import com.dimples.mvp.apt.MvpEmptyViewFactory;
 import com.dimples.mvp.base.BaseMvpPresenter;
 import com.dimples.task.AbstractTask;
 import com.dimples.task.TaskHelper;
@@ -22,17 +22,22 @@ public abstract class BasePresenter<T extends IMvpView> extends BaseMvpPresenter
         super(view);
     }
 
-    public void submitTask(AbstractTask abstractTask) {
+    protected void submitTask(AbstractTask abstractTask) {
         TaskHelper.submitTask(abstractTask, abstractTask);
     }
 
-//    @Override
-//    protected T getEmptyView() {
-//        T t;
-//        Class superClassGenericsType = GenericsUtils.getSuperClassGenericsType(this.getClass(), 0);
-//        t = MvpEmptyViewFactory.create(superClassGenericsType);
-//        return null;
-//    }
+    @SuppressWarnings("unchecked")
+    @Override
+    protected T getEmptyView() {
+        T t = null;
+        Class superClassGenericType = GenericsUtils.getSuperClassGenericsType(this.getClass(), 0);
+        try {
+            t = (T) MvpEmptyViewFactory.create(superClassGenericType);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return t;
+    }
 }
 
 
